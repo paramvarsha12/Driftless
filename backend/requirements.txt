@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+python-dotenv
+httpx
+pyjwt
+sqlalchemy
+psycopg2-binary
+resend
+apscheduler
+google-genai
+gitpython
