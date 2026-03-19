@@ -33,9 +33,19 @@ function Sidebar({ navigate, user }) {
       backgroundColor: '#0d1117', borderRight: '1px solid #21262d'
     }}>
       <div style={{ padding: '16px', borderBottom: '1px solid #21262d', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <div style={{ width: 28, height: 28, borderRadius: 6, backgroundColor: '#238636', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <Activity size={14} color="white" />
-        </div>
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="28" height="28" rx="6" fill="#0d1117" stroke="#21262d" stroke-width="1"/>
+  <line x1="0" y1="9" x2="6" y2="9" stroke="#1a4731" stroke-width="1.2"/>
+  <line x1="22" y1="9" x2="28" y2="9" stroke="#1a4731" stroke-width="1.2"/>
+  <line x1="0" y1="19" x2="6" y2="19" stroke="#1a4731" stroke-width="1.2"/>
+  <line x1="22" y1="19" x2="28" y2="19" stroke="#1a4731" stroke-width="1.2"/>
+  <circle cx="6" cy="9" r="1.8" fill="#238636"/>
+  <circle cx="22" cy="9" r="1.8" fill="#238636"/>
+  <circle cx="6" cy="19" r="1.8" fill="#238636"/>
+  <circle cx="22" cy="19" r="1.8" fill="#238636"/>
+  <rect x="6" y="5" width="16" height="18" rx="4" fill="#0e4429" stroke="#238636" stroke-width="1"/>
+  <text x="14" y="17" font-family="'Courier New', monospace" font-size="11" font-weight="700" fill="#3fb950" text-anchor="middle">D</text>
+</svg>
         <span style={{ fontSize: 15, fontWeight: 600, color: '#e6edf3', letterSpacing: '-0.3px' }}>Driftless</span>
       </div>
       <nav style={{ flex: 1, padding: '8px' }}>
@@ -64,7 +74,7 @@ function Sidebar({ navigate, user }) {
           }
           <div>
             <div style={{ fontSize: 13, fontWeight: 500, color: '#e6edf3' }}>{user?.username || '...'}</div>
-            <div style={{ fontSize: 11, color: '#8b949e' }}>Free plan</div>
+            
           </div>
         </div>
       </div>
@@ -271,24 +281,7 @@ export default function Settings() {
                   }}>Active</div>
                 </div>
 
-                {/* Plan info */}
-                <div style={{
-                  padding: '14px', borderRadius: 6,
-                  backgroundColor: '#161b22', border: '1px solid #21262d'
-                }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                    <span style={{ fontSize: 13, fontWeight: 500, color: '#e6edf3' }}>Free Plan</span>
-                    <span style={{ fontSize: 11, padding: '2px 8px', borderRadius: 20, backgroundColor: '#21262d', color: '#8b949e', border: '1px solid #30363d' }}>Current</span>
-                  </div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                    {['Up to 25 repositories', 'Weekly digest email', 'AI-powered analysis', '5 findings per report'].map(f => (
-                      <div key={f} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                        <div style={{ width: 4, height: 4, borderRadius: '50%', backgroundColor: '#3fb950', flexShrink: 0 }} />
-                        <span style={{ fontSize: 12, color: '#8b949e' }}>{f}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+                
 
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 12, borderTop: '1px solid #21262d' }}>
                   <div>

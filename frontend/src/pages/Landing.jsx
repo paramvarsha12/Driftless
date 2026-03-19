@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
+import RubiksCube from '../components/RubiksCube'
 
 export default function Landing() {
   const navigate = useNavigate()
@@ -188,7 +189,19 @@ export default function Landing() {
       <div className="cursor-glow" style={{ left: mousePos.x, top: mousePos.y }} />
 
       <nav className="nav">
-        <div className="nav-logo"><div className="logo-dot" />Driftless</div>
+        <div className="nav-logo"><svg width="20" height="20" viewBox="0 0 28 28" fill="none" style={{ display: 'inline-block' }}>
+  <rect width="28" height="28" rx="6" fill="#0d1117" stroke="#238636" stroke-width="1.5"/>
+  <line x1="0" y1="9" x2="6" y2="9" stroke="#1a4731" stroke-width="1.2"/>
+  <line x1="22" y1="9" x2="28" y2="9" stroke="#1a4731" stroke-width="1.2"/>
+  <line x1="0" y1="19" x2="6" y2="19" stroke="#1a4731" stroke-width="1.2"/>
+  <line x1="22" y1="19" x2="28" y2="19" stroke="#1a4731" stroke-width="1.2"/>
+  <circle cx="6" cy="9" r="1.8" fill="#238636"/>
+  <circle cx="22" cy="9" r="1.8" fill="#238636"/>
+  <circle cx="6" cy="19" r="1.8" fill="#238636"/>
+  <circle cx="22" cy="19" r="1.8" fill="#238636"/>
+  <rect x="6" y="5" width="16" height="18" rx="4" fill="#0e4429" stroke="#238636" stroke-width="1"/>
+  <text x="14" y="17" font-family="'Courier New', monospace" font-size="11" font-weight="700" fill="#3fb950" text-anchor="middle">D</text>
+</svg>Driftless</div>
         <div className="nav-right">
           <button className="btn-ghost" onClick={() => document.getElementById('how').scrollIntoView({ behavior: 'smooth' })}>
             How it works
@@ -248,6 +261,11 @@ export default function Landing() {
           ))}
         </div>
       </section>
+      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 48px 60px', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ width: 320, height: 320 }}>
+          <RubiksCube />
+        </div>
+      </div>
 
       <section className="how-section" id="how">
         <div className="section-label">The process</div>

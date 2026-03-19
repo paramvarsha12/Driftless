@@ -34,3 +34,19 @@ export async function runAnalysis(repoFullName) {
   if (!res.ok) throw new Error('Analysis failed')
   return res.json()
 }
+
+
+
+export async function chatWithAgent(repoContext, message, history) {
+  const token = getToken()
+  const res = await fetch('http://localhost:8000/analysis/chat', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ repo_context: repoContext, message, history })
+  })
+  if (!res.ok) throw new Error('Chat failed')
+  return res.json()
+}

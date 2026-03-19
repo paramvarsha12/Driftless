@@ -18,6 +18,11 @@ router = APIRouter()
 class AnalysisRequest(BaseModel):
     repo_full_name: str
 
+class ChatRequest(BaseModel):
+    repo_context: dict
+    message: str
+    history: list = []
+
 def get_current_user(authorization: str = Header(None)):
     if not authorization or not authorization.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Not authenticated")
@@ -141,3 +146,43 @@ async def send_test_digest(user=Depends(get_current_user), db: Session = Depends
     if success:
         return {"message": f"Test digest sent to {db_user.email}"}
     raise HTTPException(status_code=500, detail="Failed to send digest")
+
+@router.post("/chat")
+async def chat_with_agent(
+    request: ChatRequest,
+    user=Depends(get_current_user)
+):
+    try:
+        from google import genai
+        client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+        repo = request.repo_context
+        findings_text = ""
+        for i, f in enumerate(repo.get("findings", [])):
+            findings_text += f"\n{i+1}. [{f.get('severity','').upper()}] {f.get('title','')} — Fix: {f.get('fix','')} — Estimated time: {f.get('estimatedTime','')}"
+
+        system_prompt = f"""You are the Driftless security agent for the repository '{repo.get('repo_name')}'.
+Health score: {repo.get('healthScore')}/100
+Summary: {repo.get('summary')}
+Findings:{findings_text if findings_text else ' None found — this repo is clean.'}
+
+Answer questions about this specific repository's security findings, vulnerabilities, and fixes.
+Be concise, direct, and actionable. Use plain text only, no markdown formatting."""
+
+        history_text = ""
+        for msg in request.history[-6:]:
+            role = "User" if msg.get("role") == "user" else "Agent"
+            history_text += f"\n{role}: {msg.get('content','')}"
+
+        full_prompt = f"{system_prompt}\n\nConversation:{history_text}\n\nUser: {request.message}\nAgent:"
+
+        response = client.models.generate_content(
+            model="gemini-2.5-flash",
+            contents=full_prompt
+        )
+
+        return {"response": response.text.strip()}
+
+    except Exception as e:
+        print(f"Chat error: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
