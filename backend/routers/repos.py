@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import httpx, os
 
-load_dotenv(Path(__file__).parent.parent / ".env")
+load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
 router = APIRouter()
 security = HTTPBearer()

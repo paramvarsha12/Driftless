@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import os
 
 from pathlib import Path
-load_dotenv(Path(__file__).parent / ".env")
+load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 

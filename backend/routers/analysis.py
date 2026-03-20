@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime
 import jwt, os
 
-load_dotenv(Path(__file__).parent.parent / ".env")
+load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
 from database import get_db, User, AnalysisResult, Repository
 from services.audit import clone_and_audit_repo as run_audit

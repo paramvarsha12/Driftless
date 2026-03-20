@@ -7,7 +7,7 @@ from database import get_db, User
 from dotenv import load_dotenv
 from pathlib import Path
 
-load_dotenv(Path(__file__).parent.parent / ".env")
+load_dotenv(Path(__file__).parent.parent / ".env", override=False)
 
 router = APIRouter()
 
