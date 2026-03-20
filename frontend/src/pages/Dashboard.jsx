@@ -724,7 +724,7 @@ export default function Dashboard() {
     <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#010409' }}>
       <div style={{ textAlign: 'center' }}>
         <p style={{ color: '#e6edf3', marginBottom: 12 }}>{error}</p>
-        <button onClick={() => window.location.href = 'http://localhost:8000/auth/github'} style={{ padding: '8px 16px', borderRadius: 6, backgroundColor: '#238636', color: 'white', border: 'none', cursor: 'pointer', fontSize: 13 }}>Login with GitHub</button>
+        <button onClick={() => window.location.href = 'https://driftless.onrender.com/auth/github'} style={{ padding: '8px 16px', borderRadius: 6, backgroundColor: '#238636', color: 'white', border: 'none', cursor: 'pointer', fontSize: 13 }}>Login with GitHub</button>
       </div>
     </div>
   )

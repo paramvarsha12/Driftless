@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:8000'
+const BASE_URL = 'https://driftless.onrender.com'
 
 export function getToken() {
   return localStorage.getItem('driftless_token')
@@ -39,7 +39,7 @@ export async function runAnalysis(repoFullName) {
 
 export async function chatWithAgent(repoContext, message, history) {
   const token = getToken()
-  const res = await fetch('http://localhost:8000/analysis/chat', {
+  const res = await fetch('https://driftless.onrender.com/analysis/chat', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
